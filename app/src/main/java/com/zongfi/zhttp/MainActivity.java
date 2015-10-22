@@ -1,6 +1,7 @@
 package com.zongfi.zhttp;
 
 import android.os.Bundle;
+import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -23,8 +24,10 @@ import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity {
 
-    @Bind(R.id.main_msg)
+    @Bind(R.id.main_msg1)
     TextView msgTextView;
+    @Bind(R.id.collapsing_tollbar)
+    CollapsingToolbarLayout collapsingToolbarLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,11 +41,13 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                OkHttpStack okHttpStack = new OkHttpStack();
-                RequestQueue volley = Volley.newRequestQueue(MainActivity.this, okHttpStack);
-                volley.start();
+                Snackbar.make(view,"你看啥你看啥！",Snackbar.LENGTH_SHORT).show();
+//                OkHttpStack okHttpStack = new OkHttpStack();
+//                RequestQueue volley = Volley.newRequestQueue(MainActivity.this, okHttpStack);
+//                volley.start();
             }
         });
+        collapsingToolbarLayout.setTitle("您看啥");
     }
 
     @Override
