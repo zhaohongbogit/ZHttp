@@ -15,6 +15,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
 import com.zongfi.zhttp.network.OkHttpStack;
 
+import java.io.IOException;
 import java.util.HashMap;
 
 import javax.net.ssl.SSLSocketFactory;
@@ -41,9 +42,14 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                OkHttpStack okHttpStack = new OkHttpStack();
-                RequestQueue volley = Volley.newRequestQueue(MainActivity.this, okHttpStack);
-                volley.start();
+                try {
+                    OkHttpStack okHttpStack = new OkHttpStack();
+                    okHttpStack.setCertificates(getAssets().open("srca.cer"));
+                    RequestQueue volley = Volley.newRequestQueue(MainActivity.this, okHttpStack);
+                    volley.start();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         });
         collapsingToolbarLayout.setTitle("您看啥");
@@ -56,18 +62,6 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
-    private void requestData(){
-        //TODO http://www.chinaz.com/web/2015/0731/428907.shtml
-        String[] hosts = {"kyfw.12306.cn"};
-        int[] certRes = {R.raw.kyfw};
-        String[] certPass = {"asdfqaz"};
-        HashMap<Object, Object> socketFactoryMap = new HashMap<>(hosts.length);
-        for(int i=0;i<certRes.length;i++){
-            int res = certRes[i];
-            String password = certPass[i];
-        }
-    }
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
@@ -77,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_click) {
-            Snackbar.make(collapsingToolbarLayout,"你看啥你看啥！",Snackbar.LENGTH_SHORT).show();
+            Snackbar.make(collapsingToolbarLayout, "你看啥你看啥！", Snackbar.LENGTH_SHORT).show();
             return true;
         }
         return super.onOptionsItemSelected(item);
