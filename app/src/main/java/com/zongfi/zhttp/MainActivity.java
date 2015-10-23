@@ -41,10 +41,9 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view,"你看啥你看啥！",Snackbar.LENGTH_SHORT).show();
-//                OkHttpStack okHttpStack = new OkHttpStack();
-//                RequestQueue volley = Volley.newRequestQueue(MainActivity.this, okHttpStack);
-//                volley.start();
+                OkHttpStack okHttpStack = new OkHttpStack();
+                RequestQueue volley = Volley.newRequestQueue(MainActivity.this, okHttpStack);
+                volley.start();
             }
         });
         collapsingToolbarLayout.setTitle("您看啥");
@@ -77,10 +76,10 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_click) {
+            Snackbar.make(collapsingToolbarLayout,"你看啥你看啥！",Snackbar.LENGTH_SHORT).show();
             return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 }
