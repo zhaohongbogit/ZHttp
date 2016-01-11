@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/ZHttp.iml" filepath="$PROJECT_DIR$/ZHttp.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/zfastlib/zfastlib.iml" filepath="$PROJECT_DIR$/zfastlib/zfastlib.iml" />
     </modules>
   </component>
 </project>
